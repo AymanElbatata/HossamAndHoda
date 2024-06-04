@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HossamAndHoda2021DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="HossamAndHoda2021DBModelStoreContainer">
+    <EntitySet Name="ContactUsTBL" EntityType="HossamAndHoda2021DBModel.Store.ContactUsTBL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderDetailTBL" EntityType="HossamAndHoda2021DBModel.Store.OrderDetailTBL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderTBL" EntityType="HossamAndHoda2021DBModel.Store.OrderTBL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductTBL" EntityType="HossamAndHoda2021DBModel.Store.ProductTBL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="HossamAndHoda2021DBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserLoginTBL" EntityType="HossamAndHoda2021DBModel.Store.UserLoginTBL" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserTBL" EntityType="HossamAndHoda2021DBModel.Store.UserTBL" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_OrderDetailTBL_OrderTBL" Association="HossamAndHoda2021DBModel.Store.FK_OrderDetailTBL_OrderTBL">
+      <End Role="OrderTBL" EntitySet="OrderTBL" />
+      <End Role="OrderDetailTBL" EntitySet="OrderDetailTBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetailTBL_ProductTBL" Association="HossamAndHoda2021DBModel.Store.FK_OrderDetailTBL_ProductTBL">
+      <End Role="ProductTBL" EntitySet="ProductTBL" />
+      <End Role="OrderDetailTBL" EntitySet="OrderDetailTBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLoginTBL_UserTBL" Association="HossamAndHoda2021DBModel.Store.FK_UserLoginTBL_UserTBL">
+      <End Role="UserTBL" EntitySet="UserTBL" />
+      <End Role="UserLoginTBL" EntitySet="UserLoginTBL" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ContactUsTBL">
+    <Key>
+      <PropertyRef Name="ContactUsID" />
+    </Key>
+    <Property Name="ContactUsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserEmail" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserName" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserPhone" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserMessage" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UserIP" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="DateOfMaking" Type="datetime" Nullable="true" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderDetailTBL">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderIDD" Type="int" Nullable="true" />
+    <Property Name="ProductIDD" Type="int" Nullable="true" />
+    <Property Name="Unit" Type="int" Nullable="true" />
+    <Property Name="Price" Type="int" Nullable="true" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderTBL">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderAutoCode" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserName" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserPhone" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserGovernorate" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserCity" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserAddress" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserIP" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="DateOfMaking" Type="datetime" Nullable="true" />
+    <Property Name="TotalPrice" Type="int" Nullable="true" />
+    <Property Name="IsCompleted" Type="bit" Nullable="true" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductTBL">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductAutoCode" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="ProductFactoryCode" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="ProductNameAR" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="ProductDetails" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="ProductPrice" Type="int" Nullable="true" />
+    <Property Name="ProductImage1URL" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="ProductImage2URL" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="ProductImage3URL" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="ProductViews" Type="int" Nullable="true" />
+    <Property Name="DateOfMaking" Type="datetime" Nullable="true" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserLoginTBL">
+    <Key>
+      <PropertyRef Name="UserLoginID" />
+    </Key>
+    <Property Name="UserLoginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserIDD" Type="int" Nullable="true" />
+    <Property Name="LoginIPAddress" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="LoginTime" Type="datetime" Nullable="true" />
+    <Property Name="LogoutTime" Type="datetime" Nullable="true" />
+    <Property Name="SessionUnique" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="IsDeleted" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserTBL">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserEmail" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserPassword" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="UserFullName" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="IsStopped" Type="bit" Nullable="true" />
+    <Property Name="IsDeleted" Type="bit" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_OrderDetailTBL_OrderTBL">
+    <End Role="OrderTBL" Type="HossamAndHoda2021DBModel.Store.OrderTBL" Multiplicity="0..1" />
+    <End Role="OrderDetailTBL" Type="HossamAndHoda2021DBModel.Store.OrderDetailTBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderTBL">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetailTBL">
+        <PropertyRef Name="OrderIDD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetailTBL_ProductTBL">
+    <End Role="ProductTBL" Type="HossamAndHoda2021DBModel.Store.ProductTBL" Multiplicity="0..1" />
+    <End Role="OrderDetailTBL" Type="HossamAndHoda2021DBModel.Store.OrderDetailTBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductTBL">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetailTBL">
+        <PropertyRef Name="ProductIDD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLoginTBL_UserTBL">
+    <End Role="UserTBL" Type="HossamAndHoda2021DBModel.Store.UserTBL" Multiplicity="0..1" />
+    <End Role="UserLoginTBL" Type="HossamAndHoda2021DBModel.Store.UserLoginTBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTBL">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserLoginTBL">
+        <PropertyRef Name="UserIDD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

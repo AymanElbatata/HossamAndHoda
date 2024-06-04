@@ -1,0 +1,226 @@
+﻿@{
+    string Vname = "Product";
+    ViewBag.Title = @Vname;
+    //Layout = null;
+    Layout = "~/Views/Shared/AdminLTE.cshtml";
+}
+
+<div class="text-center mb-3">
+    <h2>(@Vname)</h2>
+    <form class="form-horizontal" method="post">
+        <span>@Vname Code </span>
+        <br />
+        <input type="text" autocomplete="off" id="txtENBTNSearch" name="txtENBTNSearch" class="col-md-3 text-center" required /></span>
+        <br />
+        <input type="submit" class=" btn btn-outline-secondary" id="LoadRecordsButton" value="Search">
+    </form>
+
+</div>
+<div id="LKTBLNAME"></div>
+
+@*<style>
+    #jtable-create-form, #jtable-edit-form {
+        display: block;
+        width: 500px;
+        overflow: hidden !important;
+        height: 500px;
+        text-align: center;
+        /*        padding: 5px;
+    */
+    }
+
+
+    .jtable-input-field-container:nth-of-type(1), .jtable-input-field-container:nth-of-type(2),
+    .jtable-input-field-container:nth-of-type(3), .jtable-input-field-container:nth-of-type(4),
+    .jtable-input-field-container:nth-of-type(5), .jtable-input-field-container:nth-of-type(6),
+    .jtable-input-field-container:nth-of-type(7), .jtable-input-field-container:nth-of-type(8)
+   {
+        margin-bottom: 2px;
+        margin-top: 2px;
+        display: inline-block;
+        width: 19% !important;
+        padding: 5px;
+    }
+
+    .jtable-input-field-container:nth-of-type(9) {
+        margin-bottom: 2px;
+        margin-top: 2px;
+        display: inline-block;
+        width: 33% !important;
+        padding: 5px;
+    }
+</style>*@
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            $('#LKTBLNAME').jtable({
+                title: '@Vname',
+                paging: true,
+                pageSize: 10,
+                sorting: true,
+                //defaultSorting: 'CourseName ASC',
+                columnResizable: true,
+                columnSelectable: true,
+                saveUserPreferences: true,
+                actions: {
+                    listAction: 'PRVProduct/listAll',
+                    //createAction: 'New/CreateOne',
+                    //updateAction: 'New/UpdateOne',
+                    deleteAction: 'PRVProduct/DeleteOne',
+                    createAction: function (data) {
+                        var deferred = $.Deferred();
+                        // Capture form submit result from the hidden iframe
+                        $("#postiframe").load(function () {
+                            iframeContents = $("#postiframe").contents().find("body").text();
+                            var result = $.parseJSON(iframeContents);
+                            deferred.resolve(result);
+                        });
+                        var form = $('#jtable-create-form');
+                        form.unbind("submit");
+                        form.attr("action", "PRVProduct/CreateOne");
+                        form.attr("method", "post");
+                        form.attr("enctype", "multipart/form-data");
+                        form.attr("encoding", "multipart/form-data");
+                        form.attr("target", "postiframe");
+                        form.submit();
+                        return deferred;
+                    },
+                    updateAction: function (data) {
+                        var deferred = $.Deferred();
+                        // Capture form submit result from the hidden iframe
+                        $("#postiframe").load(function () {
+                            iframeContents = $("#postiframe").contents().find("body").text();
+                            var result = $.parseJSON(iframeContents);
+                            deferred.resolve(result);
+                        });
+                        var form = $('#jtable-edit-form');
+                        form.unbind("submit");
+                        form.attr("action", "PRVProduct/UpdateOne");
+                        form.attr("method", "post");
+                        form.attr("enctype", "multipart/form-data");
+                        form.attr("encoding", "multipart/form-data");
+                        form.attr("target", "postiframe");
+                        form.submit();
+                        return deferred;
+                    },
+                },
+                fields: {
+                    ProductID: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    ProductAutoCode: {
+                        title: 'AutoCode',
+                    },
+                    ProductViews: {
+                        title: 'Views',
+                    },
+                    ProductFactoryCode: {
+                        title: 'Factory Code',
+                    //    inputClass: 'validate[required]'
+                    },
+                    ProductNameAR: {
+                        title: 'Name AR',
+                        inputClass: 'validate[required]',
+                        //list: false
+                    },
+                    ProductPrice: {
+                        title: 'Unit Price',
+                        inputClass: 'validate[required]',
+                        //list: false
+                    },
+                    ProductImage1URL: {
+                        title: 'Image1',
+                        input: function (data) {
+                            return '<input type ="file" id="ProductImage1URL" name="ProductImage1URL" class="input-type-file" accept="image/*"/><iframe name="postiframe" id="postiframe" style="display: none" />';
+                        },
+                        display: function (data) {
+                            return ' <iframe src="Images/Product/' + data.record.ProductImage1URL + '" width="50" height="50"> </iframe>'
+                        },
+                    //    list: false
+                    },
+                    ProductImage2URL: {
+                        title: 'Image2',
+                        input: function (data) {
+                            return '<input type ="file" id="ProductImage2URL" name="ProductImage2URL" class="input-type-file" accept="image/*"/><iframe name="postiframe" id="postiframe" style="display: none" />';
+                        },
+                        display: function (data) {
+                            return ' <iframe src="Images/Product/' + data.record.ProductImage2URL + '" width="50" height="50"> </iframe>'
+                        },
+                        list: false
+                    },
+                    ProductImage3URL: {
+                        title: 'Image3',
+                        input: function (data) {
+                            return '<input type ="file" id="ProductImage3URL" name="ProductImage3URL" class="input-type-file" accept="image/*"/><iframe name="postiframe" id="postiframe" style="display: none" />';
+                        },
+                        display: function (data) {
+                            return ' <iframe src="Images/Product/' + data.record.ProductImage3URL + '" width="50" height="50"> </iframe>'
+                        },
+                        list: false
+                    },                   
+                    ProductDetails: {
+                        title: 'Details',
+                        type: 'textarea',
+                        inputClass: 'validate[required]',
+                        list: false
+                    },                   
+                    IsDeleted: {
+                        title: 'Delete',
+                        type: 'checkbox',
+                        defaultValue: 'false',
+                        values: { 'false': 'No', 'true': 'Yes' },
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                },
+                formCreated: function (event, data) {
+                    if (data.formType == "create") {
+                        $(".ui-dialog-title").text("Add New");
+                    }
+                    else {
+                        $(".ui-dialog-title").text("Modify");
+                    }
+
+                    $("#Edit-ProductPrice").keydown(function (e) {
+                        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+                            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                            (e.keyCode >= 35 && e.keyCode <= 40)) {
+                            return;
+                        }
+                        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                            e.preventDefault();
+                        }
+                    });
+
+                    $("#Edit-ProductAutoCode, #Edit-ProductViews").attr('readonly', true);
+                    $("#Edit-ProductFactoryCode, #Edit-ProductNameAR, #Edit-ProductPrice").attr('autocomplete', 'off');
+
+                },
+                formSubmitting: function (event, data) {
+                    return data.form.validationEngine('validate');
+                },
+                formClosed: function (event, data) {
+                    data.form.validationEngine('hide');
+                    data.form.validationEngine('detach');
+                    $(".ui-dialog-title").text("Remove");
+                },
+
+            });
+            $('#LKTBLNAME').jtable('load');
+
+            $('#LoadRecordsButton').click(function (e) {
+
+                e.preventDefault();
+                $('#LKTBLNAME').jtable('load', {
+
+                    txtENBTNSearch: $('#txtENBTNSearch').val()
+                });
+            });
+        });
+</script>
+

@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "طلب شراء";
+}
+
+<h2 class="text-center">طلب شراء</h2>
+<div class="m-auto w-75" dir="rtl">
+    <div class="mt-5 mb-5 col-12">
+        @using (Html.BeginForm("OrderNow", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div name="emptyvalues" class="hide">
+                <input type="hidden" name="PVTNum" value="Ok@19777Ok" />
+            </div>
+            <div class="text-center">
+                <div class="form-control mb-2">
+                    <p>
+                        كود الطلب : @ViewBag.OrderAutoCode
+                    </p>
+                    <p>
+                        الاجمالى بالجنية المصرى :  @ViewBag.totalprice
+                    </p>
+                    <div class="d-flex">
+                        <input class="form-control mb-2 w-50" name="name1" id="name1" type="text" placeholder="الإسم" aria-label="CNTName" aria-required="true" required="required" maxlength="250">
+                        <input class="form-control mb-2 w-50" name="Phone1" id="Phone1" type="text" placeholder="رقم هاتف" aria-label="Phone1CTN" aria-required="true" required="required" maxlength="11">
+                    </div>
+                    <div class="d-flex">
+                        <input class="form-control mb-2 w-50" name="Govenorate1" id="Govenorate1" type="text" placeholder="المحافظة" aria-label="Govenorate1" aria-required="true" required="required" maxlength="250">
+                        <input class="form-control mb-2 w-50" name="City1" id="City1" type="text" placeholder="المدينة" aria-label="City1" aria-required="true" required="required" maxlength="250">
+                    </div>
+                    <div class="w-100">
+                        <textarea class="form-control m-md-auto col-md-auto" name="Address1" id="Address1" placeholder="المنطقة - رقم المنزل - اسم الشارع" aria-label="CNTMSG" aria-required="true" required="required" maxlength="250"></textarea>
+                    </div>
+                </div>
+                <button class="btn btn-outline-dark" type="submit" id="sendusCNTNButton">إرسال الطلب</button>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts1 {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#name1, #Phone1, #Govenorate1, #City1").attr('autocomplete', 'off');
+
+            $("#Phone1").keydown(function (e) {
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                    return;
+                }
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+
+        });
+
+        function OnSuccess(data) {
+            $("#name1CTN, #Phone1CTN, #message1CTN").val("");
+            $("#contactresult").css("color", "green").text(data.Message).fadeIn().fadeOut(7000);
+        }
+        function OnFailure(data) {
+            $("#contactresult").css("color", "red").text(data.Message).fadeIn().fadeOut(7000);
+
+        }
+    </script>
+}

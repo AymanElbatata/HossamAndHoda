@@ -1,0 +1,214 @@
+﻿@model IEnumerable<HossamAndHoda2021.Models.OrderDetailTBL>
+@{
+    ViewBag.Title = "العربة";
+    int counter = 1;
+}
+
+<div dir="rtl">
+
+    <header>
+        <div id="MyPath" class="text-center py-2">
+            <h2>
+                <a style="text-decoration:none;" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@Url.Action("Index","Home", new { Area="" }, null)">الرئيسية</a>
+                /
+                <a style="text-decoration:none;" href='@Url.Action("Cart", "Home")' title='@Url.Action("Cart", "Home")'>العربة</a>
+            </h2>
+        </div>
+    </header>
+
+    <div class="text-center row m-5" id="demo">
+
+        <table style="border:5px solid black" class="text-center table">
+            <thead>
+                <tr>
+                    <th>
+                        م
+                    </th>
+                    <th class="text-center justify-content-center">
+                        كود المنتج
+                    </th>
+                    <th class="text-center justify-content-center">
+                        إسم المنتج
+                    </th>
+                    <th class="text-center justify-content-center">
+                        سعر المنتج
+                    </th>
+                    <th class="text-center justify-content-center">
+                        +
+                    </th>
+                    <th class="text-center justify-content-center">
+                        عدد الوحدات
+                    </th>
+                    <th class="text-center justify-content-center">
+                        -
+                    </th>
+                    <th class="text-center justify-content-center">
+                        الإجمالى
+                    </th>
+                    <th class="text-center justify-content-center">
+                        صورة المنتج
+                    </th>
+                    <th class="text-center justify-content-center">
+                        حذف
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @counter
+                            @{counter++;}
+                        </td>
+                        <td class="text-center justify-content-center">
+                            @item.ProductTBL.ProductAutoCode
+                        </td>
+                        <td class="text-center justify-content-center">
+                            @item.ProductTBL.ProductNameAR
+                        </td>
+                        <td class="text-center justify-content-center">
+                            <span class="myprice">@item.Price</span>
+                        </td>
+
+                        <td class="text-center justify-content-center">
+                            <input type="hidden" name="ProductID" value="@item.ProductIDD">
+                            <input type="hidden" name="addmore" value="1">
+                            <button class="button btn btn-outline-success" name="addmorebtn">+</button>
+                        </td>
+
+                        <td class="text-center justify-content-center">
+                            <span class="myunitscounter"> @item.Unit</span>
+                        </td>
+                        <td class="text-center justify-content-center">
+
+                            <input type="hidden" name="ProductID" value="@item.ProductIDD">
+                            <input type="hidden" name="addless" value="1">
+                            <button class="button btn btn-outline-warning" name="addlessbtn">-</button>
+                        </td>
+                        <td>
+                            <span class="myresult">
+                                @{int costs = Convert.ToInt32(item.Unit * item.Price);}
+                                @costs
+                            </span>                          
+                        </td>
+                        <td class="text-center justify-content-center">
+                            @if (item.ProductTBL.ProductImage1URL != null)
+                            {
+                                <img class="img-fluid" height="10%" width="30%" src="~/Images/Product/@item.ProductTBL.ProductImage1URL" />
+                            }
+                            else
+                            {
+                                <img class="img-fluid" height="10%" width="30%" src="~/Images/Main/main.png" />
+
+                            }
+                        </td>
+                        <td class="text-center justify-content-center">
+                            @using (Html.BeginForm("Cart", "Home", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="ProductID" value="@item.ProductIDD">
+                                <input type="hidden" name="deleteitem" value="1">
+                                <button class="button btn btn-outline-danger" onclick = "return confirm('هل تريد الحذف?');">حذف</button>
+
+                            }
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="10" class="text-center">
+                        <b id="TotalPriceTXT">
+                            @ViewBag.totalprice
+                        </b>
+                        الاجمالى بالجنية المصرى
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" class="text-center">
+                        السعر لا يشمل مصاريف الشحن
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" class="text-center">
+                        لا يمكن إرسال طلب شراء لإجمالى منتجات أقل من 200 جنية مصرى
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <div class="col-md-12 text-center validationfoORDER">
+
+        </div>
+    </div>
+</div>
+
+@section scripts1 {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajaxSetup({ async: false });
+
+            AddORderBTN();
+
+            $("button[name='addmorebtn']").on('click',function (event) {
+            //alert("Add");
+            let myunits = $(this).parent().next().children(".myunitscounter");
+            let totalprice = $(this).parent().next().next().next().children(".myresult");
+            let unitprice = $(this).parent().prev().children(".myprice");
+
+             var ProductIDD = $(this).prev().prev().val();
+             let url = '@Url.Action("AddOrLessCurrentCartItems", "Home", new { Area=""}, null)';
+             $.post(url, { ProductID: ProductIDD, addmore:"1" }, function (data, statuscode, xhr) {
+                 myunits.text(data.Units);
+                 totalprice.text(parseInt(data.Units) * parseInt(unitprice.text() ));
+                 $("#TotalPriceTXT").text(data.TotalPrice);
+             });
+            AddORderBTN();
+        });
+
+            $("button[name='addlessbtn']").on('click', function (event) {
+            //alert("Add");
+            let myunits = $(this).parent().prev().children(".myunitscounter");
+
+            let totalprice = $(this).parent().next().children(".myresult");
+            let unitprice = $(this).parent().prev().prev().prev().children(".myprice");
+
+             var ProductIDD = $(this).prev().prev().val();
+             let url = '@Url.Action("AddOrLessCurrentCartItems", "Home", new { Area=""}, null)';
+            $.post(url, { ProductID: ProductIDD, addless:"1" }, function (data, statuscode, xhr) {
+                myunits.text(data.Units);
+                totalprice.text(parseInt(data.Units) * parseInt(unitprice.text() ));
+                $("#TotalPriceTXT").text(data.TotalPrice);
+            });
+            DeleteORderBTN();
+
+        });
+
+            function AddORderBTN() {
+                let TotalPriceTXT = parseInt($("#TotalPriceTXT").text());
+                if (TotalPriceTXT >= 200) {
+                    let vanumber = $('.orderallowed').length;
+                    if (vanumber == 1) {
+
+                    }
+                    else {
+                        let acceptance = `<a href="@Url.Action("OrderNow","Home", new { Area="" }, null)" class="button btn btn-outline-success orderallowed"> <i class="fas fa-shopping-cart"></i> طلب شراء</a>`;
+                        $(".validationfoORDER").append(acceptance);
+                    }
+
+                }
+            }
+
+            function DeleteORderBTN() {
+                let TotalPriceTXT = parseInt($("#TotalPriceTXT").text());
+                if (TotalPriceTXT < 200) {
+                    //$(".validationfoORDER").remove('.orderallowed');
+                    $(".orderallowed").remove();
+                }
+            }
+
+   });
+    </script>
+
+}

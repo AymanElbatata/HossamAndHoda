@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HossamAndHoda2021DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HossamAndHoda2021DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ContactUsTBL" EntityType="HossamAndHoda2021DBModel.ContactUsTBL" />
+    <EntitySet Name="OrderDetailTBL" EntityType="HossamAndHoda2021DBModel.OrderDetailTBL" />
+    <EntitySet Name="OrderTBL" EntityType="HossamAndHoda2021DBModel.OrderTBL" />
+    <EntitySet Name="ProductTBL" EntityType="HossamAndHoda2021DBModel.ProductTBL" />
+    <EntitySet Name="sysdiagrams" EntityType="HossamAndHoda2021DBModel.sysdiagrams" />
+    <EntitySet Name="UserLoginTBL" EntityType="HossamAndHoda2021DBModel.UserLoginTBL" />
+    <EntitySet Name="UserTBL" EntityType="HossamAndHoda2021DBModel.UserTBL" />
+    <AssociationSet Name="FK_OrderDetailTBL_OrderTBL" Association="HossamAndHoda2021DBModel.FK_OrderDetailTBL_OrderTBL">
+      <End Role="OrderTBL" EntitySet="OrderTBL" />
+      <End Role="OrderDetailTBL" EntitySet="OrderDetailTBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetailTBL_ProductTBL" Association="HossamAndHoda2021DBModel.FK_OrderDetailTBL_ProductTBL">
+      <End Role="ProductTBL" EntitySet="ProductTBL" />
+      <End Role="OrderDetailTBL" EntitySet="OrderDetailTBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLoginTBL_UserTBL" Association="HossamAndHoda2021DBModel.FK_UserLoginTBL_UserTBL">
+      <End Role="UserTBL" EntitySet="UserTBL" />
+      <End Role="UserLoginTBL" EntitySet="UserLoginTBL" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ContactUsTBL">
+    <Key>
+      <PropertyRef Name="ContactUsID" />
+    </Key>
+    <Property Name="ContactUsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserIP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfMaking" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderDetailTBL">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderIDD" Type="Int32" />
+    <Property Name="ProductIDD" Type="Int32" />
+    <Property Name="Unit" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="OrderTBL" Relationship="HossamAndHoda2021DBModel.FK_OrderDetailTBL_OrderTBL" FromRole="OrderDetailTBL" ToRole="OrderTBL" />
+    <NavigationProperty Name="ProductTBL" Relationship="HossamAndHoda2021DBModel.FK_OrderDetailTBL_ProductTBL" FromRole="OrderDetailTBL" ToRole="ProductTBL" />
+  </EntityType>
+  <EntityType Name="OrderTBL">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderAutoCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserGovernorate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserCity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserIP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfMaking" Type="DateTime" Precision="3" />
+    <Property Name="TotalPrice" Type="Int32" />
+    <Property Name="IsCompleted" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="OrderDetailTBL" Relationship="HossamAndHoda2021DBModel.FK_OrderDetailTBL_OrderTBL" FromRole="OrderTBL" ToRole="OrderDetailTBL" />
+  </EntityType>
+  <EntityType Name="ProductTBL">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductAutoCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductFactoryCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductNameAR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductDetails" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductPrice" Type="Int32" />
+    <Property Name="ProductImage1URL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductImage2URL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductImage3URL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ProductViews" Type="Int32" />
+    <Property Name="DateOfMaking" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="OrderDetailTBL" Relationship="HossamAndHoda2021DBModel.FK_OrderDetailTBL_ProductTBL" FromRole="ProductTBL" ToRole="OrderDetailTBL" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserLoginTBL">
+    <Key>
+      <PropertyRef Name="UserLoginID" />
+    </Key>
+    <Property Name="UserLoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserIDD" Type="Int32" />
+    <Property Name="LoginIPAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LoginTime" Type="DateTime" Precision="3" />
+    <Property Name="LogoutTime" Type="DateTime" Precision="3" />
+    <Property Name="SessionUnique" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="UserTBL" Relationship="HossamAndHoda2021DBModel.FK_UserLoginTBL_UserTBL" FromRole="UserLoginTBL" ToRole="UserTBL" />
+  </EntityType>
+  <EntityType Name="UserTBL">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="UserFullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsStopped" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="UserLoginTBL" Relationship="HossamAndHoda2021DBModel.FK_UserLoginTBL_UserTBL" FromRole="UserTBL" ToRole="UserLoginTBL" />
+  </EntityType>
+  <Association Name="FK_OrderDetailTBL_OrderTBL">
+    <End Type="HossamAndHoda2021DBModel.OrderTBL" Role="OrderTBL" Multiplicity="0..1" />
+    <End Type="HossamAndHoda2021DBModel.OrderDetailTBL" Role="OrderDetailTBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderTBL">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetailTBL">
+        <PropertyRef Name="OrderIDD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetailTBL_ProductTBL">
+    <End Type="HossamAndHoda2021DBModel.ProductTBL" Role="ProductTBL" Multiplicity="0..1" />
+    <End Type="HossamAndHoda2021DBModel.OrderDetailTBL" Role="OrderDetailTBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductTBL">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetailTBL">
+        <PropertyRef Name="ProductIDD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLoginTBL_UserTBL">
+    <End Type="HossamAndHoda2021DBModel.UserTBL" Role="UserTBL" Multiplicity="0..1" />
+    <End Type="HossamAndHoda2021DBModel.UserLoginTBL" Role="UserLoginTBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTBL">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserLoginTBL">
+        <PropertyRef Name="UserIDD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<HossamAndHoda2021.Models.ProductTBL>
+
+@{
+    ViewBag.Title = "الرئيسية";
+    string AltAndSEO = "";
+}
+
+
+<div dir="rtl">
+
+    @if (ViewBag.success != null)
+    {
+    <div>
+        <p style="color:green" class="py-3 text-center">
+            @ViewBag.success
+        </p>
+    </div>
+    }
+     
+        <header>
+            <div id="MyPath" class="text-center py-2">
+                <h2>
+                    <a style="text-decoration:none;" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@Url.Action("Index","Home", new { Area="" }, null)">الرئيسية</a>
+                </h2>
+            </div>
+        </header>
+
+        <div class="row" id="demo">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-5 mt-4 text-center">
+                    <div class="accordion-item border-end border-bottom">
+                        @{
+                            AltAndSEO = Url.Action("ProductDetail", "Home", new { ProductID = item.ProductID, Area = "" });
+                        }
+                        @if (item.ProductImage1URL != null)
+                        {
+                            <a href='@AltAndSEO' title="@AltAndSEO">
+                                <img class="img-fluid ScaleMyIMG" style="border-radius:10px; border:5px inset #464646" src="~/Images/Product/@item.ProductImage1URL" alt="@AltAndSEO" title="@AltAndSEO">
+                            </a>
+                        }
+                        else
+                        {
+                            <a href='@AltAndSEO' title="@AltAndSEO">
+                                <img class="img-fluid" style="border-radius:10px; border:5px solid black" src="~/Images/Main/main.png" alt="@AltAndSEO" title="@AltAndSEO">
+                            </a>
+                        }
+                        <h2>@item.ProductNameAR</h2>
+                        <h5>كود: @item.ProductAutoCode</h5>
+                        <h5>السعر: @item.ProductPrice$EGP</h5>
+                        <p>@item.ProductDetails</p>
+                        <p class="py-2">
+                            <a href="@Url.Action("Cart","Home", new { ProductID = item.ProductID, Area="" }, null)" class="button btn btn-outline-success"> <i class="fas fa-shopping-cart"></i> إضافة للعربة</a>
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HossamAndHoda2021DBModelStoreContainer" CdmEntityContainer="HossamAndHoda2021DBEntities">
+    <EntitySetMapping Name="ContactUsTBL">
+      <EntityTypeMapping TypeName="IsTypeOf(HossamAndHoda2021DBModel.ContactUsTBL)">
+        <MappingFragment StoreEntitySet="ContactUsTBL">
+          <ScalarProperty Name="ContactUsID" ColumnName="ContactUsID" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="UserMessage" ColumnName="UserMessage" />
+          <ScalarProperty Name="UserIP" ColumnName="UserIP" />
+          <ScalarProperty Name="DateOfMaking" ColumnName="DateOfMaking" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetailTBL">
+      <EntityTypeMapping TypeName="IsTypeOf(HossamAndHoda2021DBModel.OrderDetailTBL)">
+        <MappingFragment StoreEntitySet="OrderDetailTBL">
+          <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+          <ScalarProperty Name="OrderIDD" ColumnName="OrderIDD" />
+          <ScalarProperty Name="ProductIDD" ColumnName="ProductIDD" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderTBL">
+      <EntityTypeMapping TypeName="IsTypeOf(HossamAndHoda2021DBModel.OrderTBL)">
+        <MappingFragment StoreEntitySet="OrderTBL">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="OrderAutoCode" ColumnName="OrderAutoCode" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="UserGovernorate" ColumnName="UserGovernorate" />
+          <ScalarProperty Name="UserCity" ColumnName="UserCity" />
+          <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+          <ScalarProperty Name="UserIP" ColumnName="UserIP" />
+          <ScalarProperty Name="DateOfMaking" ColumnName="DateOfMaking" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductTBL">
+      <EntityTypeMapping TypeName="IsTypeOf(HossamAndHoda2021DBModel.ProductTBL)">
+        <MappingFragment StoreEntitySet="ProductTBL">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductAutoCode" ColumnName="ProductAutoCode" />
+          <ScalarProperty Name="ProductFactoryCode" ColumnName="ProductFactoryCode" />
+          <ScalarProperty Name="ProductNameAR" ColumnName="ProductNameAR" />
+          <ScalarProperty Name="ProductDetails" ColumnName="ProductDetails" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductImage1URL" ColumnName="ProductImage1URL" />
+          <ScalarProperty Name="ProductImage2URL" ColumnName="ProductImage2URL" />
+          <ScalarProperty Name="ProductImage3URL" ColumnName="ProductImage3URL" />
+          <ScalarProperty Name="ProductViews" ColumnName="ProductViews" />
+          <ScalarProperty Name="DateOfMaking" ColumnName="DateOfMaking" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(HossamAndHoda2021DBModel.sysdiagrams)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLoginTBL">
+      <EntityTypeMapping TypeName="IsTypeOf(HossamAndHoda2021DBModel.UserLoginTBL)">
+        <MappingFragment StoreEntitySet="UserLoginTBL">
+          <ScalarProperty Name="UserLoginID" ColumnName="UserLoginID" />
+          <ScalarProperty Name="UserIDD" ColumnName="UserIDD" />
+          <ScalarProperty Name="LoginIPAddress" ColumnName="LoginIPAddress" />
+          <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+          <ScalarProperty Name="LogoutTime" ColumnName="LogoutTime" />
+          <ScalarProperty Name="SessionUnique" ColumnName="SessionUnique" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTBL">
+      <EntityTypeMapping TypeName="IsTypeOf(HossamAndHoda2021DBModel.UserTBL)">
+        <MappingFragment StoreEntitySet="UserTBL">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+          <ScalarProperty Name="IsStopped" ColumnName="IsStopped" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

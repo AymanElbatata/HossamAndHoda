@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "غير متاح";
+}
+
+<header>
+<div id="MyPath" class="text-center py-2" dir="rtl">
+    <h2>
+        <a style="text-decoration:none;" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@Url.Action("Index","Home", new { Area="" }, null)">الرئيسية</a>
+        /
+        <a style="text-decoration:none;" href='@Url.Action("InvalidNotAllowed", "Home")' title='@Url.Action("InvalidNotAllowed", "Home")'>غير متاح</a>
+    </h2>
+</div>
+</header>
+
+<div class="text-center m-auto mt-2 mb-2">
+
+    <img src="~/Images/Main/88181025-forbidden.jpg" class="img-fluid" />
+</div>
+
+

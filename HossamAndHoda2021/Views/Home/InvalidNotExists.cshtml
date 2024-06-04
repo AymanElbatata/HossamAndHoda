@@ -1,0 +1,20 @@
+﻿
+@{
+ ViewBag.Title = "غير موجود";
+ }
+
+<header>
+    <div id="MyPath" class="text-center py-2" dir="rtl">
+        <h2>
+            <a style="text-decoration:none;" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@Url.Action("Index","Home", new { Area="" }, null)">الرئيسية</a>
+            /
+            <a style="text-decoration:none;" href='@Url.Action("InvalidNotExists", "Home")' title='@Url.Action("InvalidNotExists", "Home")'>غير موجود</a>
+        </h2>
+    </div>
+</header>
+
+<div class="text-center m-auto mt-2 mb-2">
+
+    <img src="~/Images/Main/error-404.png" class="img-fluid" />
+</div>
+

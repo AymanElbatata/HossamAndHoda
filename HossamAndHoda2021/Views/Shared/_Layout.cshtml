@@ -1,0 +1,191 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="keywords" content="@ViewBag.Metakeywords" />
+    <meta name="og:title" content="@ViewBag.OgTitle" />
+    <meta name="og:description" content="@ViewBag.Ogdescription" />
+    <meta name="og:url" content="@ViewBag.OgURL" />
+    <meta name="og:image" content="@ViewBag.OgImageURL" />
+    <meta name="author" content="Lifegypt.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>@ViewBag.Title - @HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()</title>
+    <link rel="icon" type="image/x-icon" href="@Url.Content("~/Images/Main/Untitled-ICO.ico")" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/MyCSS1.css" rel="stylesheet" />
+
+</head>
+<body>
+    <section id="mynavbar">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">
+                    <img class="img-fluid" width="70" height="20" src="~/Images/Main/Untitled-1-logo.png" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-1 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">الرئيسية</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Cart","Home", new { Area="" }, null)" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">العربة<i class="fas fa-shopping-cart"></i><span id="MyOnlineCart"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a target="_blank" class="nav-link" href="mailto:@HossamAndHoda2021.Controllers.MenuList.EmailCompanyTXT()" title="@HossamAndHoda2021.Controllers.MenuList.EmailCompanyTXT()"><i class="fas fa-envelope-square"></i> </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">@HossamAndHoda2021.Controllers.MenuList.PhoneCompanyTXT() <i class="fas fa-phone"></i> </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="https://www.facebook.com/HomeStyleHH">فيسبوك<i class="fab fa-facebook-f"></i> </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mx-0 mb-1 mb-lg-0">
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                        <li class="nav-item d-flex">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">بحث</button> &nbsp;
+                            <input class="form-control mr-sm-2" name="MYSearchTXTLayout" type="search" placeholder="كود-اسم-وصف" aria-label="Search">
+                        </li>
+                        <li class="ClearMyFloat">
+                        </li>
+                        }
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    الحساب
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a class="dropdown-item" href="@Url.Action("Index","PRVEMP", new { Area="" }, null)" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">لوحة تحكم</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="@Url.Action("Logout","Home", new { Area="" }, null)" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">خروج</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a class="dropdown-item" href="@Url.Action("Login","Home", new { Area="" }, null)" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">تسجيل</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+
+                </div>
+            </div>
+        </nav>
+
+    </section>
+
+
+    <section id="mybody">
+        <div class="container-fluid mt-5 mb-5">
+            <br />
+            <hr />
+            @RenderBody()
+            <hr />
+        </div>
+    </section>
+
+    <section id="mycarousel">
+        <div class="container-fluid">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#carouselExampleDark" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#carouselExampleDark" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#carouselExampleDark" data-bs-slide-to="3"></li>
+                    <li data-bs-target="#carouselExampleDark" data-bs-slide-to="4"></li>
+                    <li data-bs-target="#carouselExampleDark" data-bs-slide-to="5"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="2000">
+                        <img src="~/Images/Carousel/kith1.jpg" class="d-block w-100 m-auto img-fluid" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="~/Images/Carousel/kith2.jpg" class="d-block w-100 m-auto img-fluid" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="~/Images/Carousel/kith3.jpg" class="d-block w-100 m-auto img-fluid" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="~/Images/Carousel/kith4.jpg" class="d-block w-100 m-auto img-fluid" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="~/Images/Carousel/kith5.jpg" class="d-block w-100 m-auto img-fluid" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="~/Images/Carousel/kith6.jpg" class="d-block w-100 m-auto img-fluid" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">
+                    </div>
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleDark" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleDark" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+            <hr />
+        </div>
+    </section>
+
+    <section id="contacus">
+        <div class="container-fluid">
+            @Html.Partial("_ContactUsForm")
+
+        </div>
+    </section>
+
+
+    <section id="ContactUSMenuLinks">
+        <div style="bottom:100px; right:15px" class="position-fixed text-center">
+            <a class="d-block mt-2 mb-3" target="_blank" href="https://www.messenger.com/t/104612055177648" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()"><img class="img-fluid" width="30" height="30" src="~/Images/connections/FB_Messenger.png" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()" /> </a>
+
+            <a class="d-block mt-2 mb-3" target="_blank" href="https://api.whatsapp.com/send?phone=201223592408" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()"><img class="img-fluid" width="30" height="30" src="~/Images/connections/Whatsapp.png" alt="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()" /> </a>
+        </div>
+    </section>
+
+    <section id="footer">
+        <div class="container-fluid">
+            <div class="mt-3 mb-2  text-center card-footer">
+                <P>&copy; @DateTime.Now.Year  جميع الحقوق محفوظة لموقع هوم ستايل إيجى </P>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Content/Jtable/OtherFiles/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Content/Jtable/OtherFiles/jquery.validate.min.js"></script>
+    <script src="~/Content/Jtable/OtherFiles/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/Jtable/OtherFiles/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="~/Scripts/Main1JavaScript.js"></script>
+    @RenderSection("scripts1", required: false)
+
+
+    <script type="text/javascript">
+     $(document).ready(function () {
+     let url = '@Url.Action("GetCurrentCartItems", "Home", new { Area=""}, null)';
+    $.post(url, { GetCount:"Cart" }, function (data, statuscode, xhr) {
+        $("#MyOnlineCart").text("("+data+")");
+     });
+   });
+    </script>
+
+</body>
+</html>

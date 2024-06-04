@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "خطأ فى النظام";
+
+    }
+
+@*<div class="text-center m-auto mt-2 mb-2" dir="@MyDirection">*@
+    <div class="text-center m-auto mt-2 mb-2">
+
+
+        <div id="MyPath" class="text-center py-2">
+            <h2>
+                <a style="text-decoration:none;" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@Url.Action("Index","Home", new { Area="" }, null)">الرئيسية</a>
+                /
+                <a style="text-decoration:none;" href='@Url.Action("ErrorDesc", "Home")' title='@Url.Action("ErrorDesc", "Home")'>خطأ فى النظام</a>
+            </h2>
+        </div>
+
+        <img src="~/Images/Main/remove-from-database-icon.png" />
+        <br />
+        <h6 style="color:red">@Session["myerrordesc"].</h6>
+        @{Session["myerrordesc"] = null; }
+    </div>
+

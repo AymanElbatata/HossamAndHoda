@@ -1,0 +1,102 @@
+﻿@model HossamAndHoda2021.Models.ProductTBL
+
+@{
+    ViewBag.Title = "تفاصيل المنتج";
+    string AltAndSEO = Url.Action("ProductDetail", "Home", new { ProductID = Model.ProductID, Area = "" });
+    <link href="~/Content/Lightbox/dist/css/lightbox.min.css" rel="stylesheet" />
+    <script src="~/Content/Lightbox/dist/js/lightbox-plus-jquery.min.js"></script>
+
+}
+
+
+
+
+<div dir="rtl">
+
+    <header>
+        <div id="MyPath" class="text-center py-2">
+            <h2>
+                <a style="text-decoration:none;" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@Url.Action("Index","Home", new { Area="" }, null)">الرئيسية</a>
+                /
+                <a style="text-decoration:none;" href="@Url.Action("ProductDetail","Home", new { Area="", ProductID = Model.ProductID }, null)" title="@Url.Action("ProductDetail","Home", new { Area="", ProductID = Model.ProductID }, null)">@Model.ProductNameAR</a>
+                
+                @*<a style="text-decoration:none;" href="@AltAndSEO" title="@AltAndSEO">@Model.ProductNameAR</a>*@
+            </h2>
+        </div>
+    </header>
+
+    <div class="d-block m-5 mb-2">
+
+
+        <div class="d-flex" dir="rtl">
+            <div class="accordion-item bg-warning text-center w-100 h-100">
+                <div class="d-block m-5 mb-5">
+                    <h3>كود المنتج: @Model.ProductAutoCode</h3>
+                    <h3>إسم المنتج: @Model.ProductNameAR</h3>
+                    <h3>سعر المنتج: @Model.ProductPrice جنية مصرى</h3>
+                        <a href="@Url.Action("Cart","Home", new { ProductID = Model.ProductID, Area="" }, null)" class="button btn btn-outline-success" title="@AltAndSEO"> <i class="fas fa-shopping-cart"></i> إضافة للعربة</a>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="w-75 d-flex m-auto mb-5" dir="rtl">
+    <div class="row">
+        <div class="col-md-2 mt-1 mb-1">
+            @if (Model.ProductImage1URL != null)
+            {
+                <a class="example-image-link" href="~/Images/Product/@Model.ProductImage1URL" data-lightbox="example-set" data-title="1">
+                    <img src="~/Images/Product/@Model.ProductImage1URL" class="img-fluid PRDImage" alt="@AltAndSEO" title="@AltAndSEO" />
+                </a>
+            }
+            else
+            {
+                <a class="example-image-link" href="~/Images/Main/main.png" data-lightbox="example-set" data-title="1">
+                    <img src="~/Images/Main/main.png" class="img-fluid PRDImage" alt="@AltAndSEO" title="@AltAndSEO" />
+                </a>
+            }
+        </div>
+        <div class="col-md-2 mt-1 mb-1">
+            @if (Model.ProductImage2URL != null)
+            {
+                <a class="example-image-link" href="~/Images/Product/@Model.ProductImage2URL" data-lightbox="example-set" data-title="2">
+                    <img src="~/Images/Product/@Model.ProductImage2URL" class="img-fluid PRDImage" alt="@AltAndSEO" title="@AltAndSEO" />
+                </a>
+            }
+            else
+            {
+                <a class="example-image-link" href="~/Images/Main/main.png" data-lightbox="example-set" data-title="2">
+                    <img src="~/Images/IMG1To12/02.png" class="img-fluid PRDImage" alt="@AltAndSEO" title="@AltAndSEO" />
+                </a>
+            }
+        </div>
+        <div class="col-md-2 mt-1 mb-1">
+            @if (Model.ProductImage3URL != null)
+            {
+                <a class="example-image-link" href="~/Images/Product/@Model.ProductImage3URL" data-lightbox="example-set" data-title="3">
+                    <img src="~/Images/Product/@Model.ProductImage3URL" class="img-fluid PRDImage" alt="@AltAndSEO" title="@AltAndSEO" />
+                </a>
+            }
+            else
+            {
+                <a class="example-image-link" href="~/Images/Main/main.png" data-lightbox="example-set" data-title="3">
+                    <img src="~/Images/IMG1To12/03.png" class="img-fluid PRDImage" alt="@AltAndSEO" title="@AltAndSEO" />
+                </a>
+            }
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <div class="d-block m-5 mb-2" dir="rtl">
+            <label><strong>تفاصيل:</strong></label>
+            <p>@Model.ProductDetails</p>
+        </div>
+    </div>
+</div>

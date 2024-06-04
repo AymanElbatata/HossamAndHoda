@@ -1,0 +1,52 @@
+﻿
+@{
+
+    ViewBag.Title = "تسجيل الدخول";
+
+}
+
+<div dir="rtl">
+
+    <header>
+        <div id="MyPath" class="text-center py-2">
+            <h2>
+                <a style="text-decoration:none;" href="@Url.Action("Index","Home", new { Area="" }, null)" title="@Url.Action("Index","Home", new { Area="" }, null)">الرئيسية</a>
+                /
+                <a style="text-decoration:none;" href='@Url.Action("Login", "Home")' title='@Url.Action("Login", "Home")'>تسجيل الدخول</a>
+            </h2>
+        </div>
+    </header>
+
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class=" w-75 form-control m-auto mt-5 mb-5 text-center py-5">
+
+            <div class="mb-2">
+                @if (ViewBag.message != null)
+                {
+                    <span style="color:red">
+                        @ViewBag.message
+                    </span>
+                }
+                @if (ViewBag.Successful != null)
+                {
+                    <span style="color:green">
+                        @ViewBag.Successful
+                    </span>
+                }
+            </div>
+            <input class="form-control mb-2 w-75 m-auto" name="loginmail" type="email" placeholder="البريد الإلكترونى" aria-label="CNTEmail" aria-required="true" required>
+            <input class="form-control mb-2 w-75 m-auto" name="loginpassword" type="password" placeholder="كلمة المرور" aria-label="CNTPasswprd" aria-required="true" required>
+
+            <button class="btn btn-outline-success" type="submit">تسجيل دخول</button>
+            <a class="btn btn-outline-danger" href="@Url.Action("ForgotPassword","Home", new { Area="" }, null)" title="@HossamAndHoda2021.Controllers.MenuList.WebsiteCompanyTXT()">نسيت كلمة المرور</a>
+
+        </div>
+
+    }
+
+
+</div>

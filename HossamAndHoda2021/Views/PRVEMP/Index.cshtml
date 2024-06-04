@@ -1,0 +1,139 @@
+﻿@{
+    string Vname = "User";
+    ViewBag.Title = @Vname;
+    //Layout = "~/Views/Shared/_Layout2.cshtml";
+    //Layout = null;
+    Layout = "~/Views/Shared/AdminLTE.cshtml";
+}
+
+
+<div class="text-center mb-3">
+    <h2>(@Vname)</h2>
+    <form class="form-horizontal" method="post">
+        <span>@Vname Name </span>
+        <br />
+        <input type="text" autocomplete="off" id="txtENBTNSearch" name="txtENBTNSearch" class="col-md-3 text-center" required /></span>
+        <br />
+        <input type="submit" class=" btn btn-outline-secondary" id="LoadRecordsButton" value="Search">
+    </form>
+
+</div>
+<div id="LKTBLNAME"></div>
+
+@*<style>
+        #jtable-create-form, #jtable-edit-form {
+            display: block;
+            width: 50px;
+            overflow: hidden !important;
+            height: 620px;
+    /*        padding: 5px;
+    */    }
+
+
+        .jtable-input-field-container:nth-of-type(1), .jtable-input-field-container:nth-of-type(2),
+        .jtable-input-field-container:nth-of-type(3), .jtable-input-field-container:nth-of-type(4),
+        .jtable-input-field-container:nth-of-type(5), .jtable-input-field-container:nth-of-type(6) {
+            margin-bottom: 2px;
+            display: block;
+            float: left;
+            width: 48% !important;
+        }
+
+        .jtable-input-field-container:nth-of-type(7), .jtable-input-field-container:nth-of-type(8),
+        .jtable-input-field-container:nth-of-type(9), .jtable-input-field-container:nth-of-type(10) {
+            margin-bottom: 2px;
+            display: block;
+            float: left;
+            width: 98% !important;
+        }
+    </style>*@
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            $('#LKTBLNAME').jtable({
+                title: '@Vname',
+                paging: true,
+                pageSize: 10,
+                sorting: true,
+                //defaultSorting: 'CourseName ASC',
+                columnResizable: true,
+                columnSelectable: true,
+                saveUserPreferences: true,
+                actions: {
+                    listAction: 'PRVEMP/listAll',
+                    createAction: 'PRVEMP/CreateOne',
+                    updateAction: 'PRVEMP/UpdateOne',
+                    deleteAction: 'PRVEMP/DeleteOne',
+                },
+                fields: {
+                    UserID: {
+                        key: true,
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                    UserEmail: {
+                        title: 'Email',
+                        inputClass: 'validate[required]'
+                    },
+                    UserPassword: {
+                        title: 'Password',
+                        type: 'password',
+                        inputClass: 'validate[required]',
+                        list: false
+                    },
+                    UserFullName: {
+                        title: 'FullName',
+                        inputClass: 'validate[required]'
+                    },
+                    IsStopped: {
+                        title: 'IsStopped',
+                        type: 'checkbox',
+                        defaultValue: 'false',
+                        values: { 'false': 'No', 'true': 'Yes' }
+                    },
+                    IsDeleted: {
+                        title: 'Delete',
+                        type: 'checkbox',
+                        defaultValue: 'false',
+                        values: { 'false': 'No', 'true': 'Yes' },
+                        create: false,
+                        edit: false,
+                        list: false
+                    },
+                },
+                formCreated: function (event, data) {
+                    if (data.formType == "create") {
+                        $(".ui-dialog-title").text("Add New");
+                    }
+                    else {
+                        $(".ui-dialog-title").text("Modify");
+                    }
+
+                    $("#Edit-UserEmail, #Edit-UserPassword, #Edit-UserFullName").attr('autocomplete', 'off');
+
+                },
+                formSubmitting: function (event, data) {
+                    return data.form.validationEngine('validate');
+                },
+                formClosed: function (event, data) {
+                    data.form.validationEngine('hide');
+                    data.form.validationEngine('detach');
+                    $(".ui-dialog-title").text("Remove");
+                },
+
+            });
+            $('#LKTBLNAME').jtable('load');
+
+            $('#LoadRecordsButton').click(function (e) {
+
+                e.preventDefault();
+                $('#LKTBLNAME').jtable('load', {
+
+                    txtENBTNSearch: $('#txtENBTNSearch').val()
+                });
+            });
+        });
+</script>
+
