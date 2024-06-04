@@ -1,0 +1,29 @@
+﻿
+.ScaleMyIMG {
+    transition: transform 1s;
+}
+
+    .ScaleMyIMG:hover {
+        transform: scale(0.7,0.7);
+    }
+
+.PRDImage{
+    transition: transform 1s;
+}
+
+    .PRDImage:hover {
+        transform: rotate(360deg);
+}
+
+
+.ClearMyFloat{
+    clear: both;
+}
+
+/**{
+    background-color:#adadad;
+    color:#070606;
+}*/
+/*.ContactUSMenuLinks a{
+    display:block;
+}*/

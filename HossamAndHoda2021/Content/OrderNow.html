@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>https://www.HomeStyleEG.com</title>
+    <style>
+        body {
+            margin: 30px;
+            padding: 30px;
+            text-align: center;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        * {
+            text-decoration: none;
+        }
+
+        table, th, td {
+            border: 1px double black;
+            font-size: large;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+
+
+<body>
+
+    <div dir="rtl">
+
+
+        <div class="text-center row m-5">
+
+            <table border="1" style="border:5px solid black; background-color:lightgray" class="text-center table">
+                <thead>
+                    <tr>
+                        <th colspan="6" class="text-center">
+                            <h2>
+                                تم إرسال طلب من خلال موقعكم بنجاح
+                            </h2>
+                            <h3>
+                                كود الطلب: [OrderAutoCode]
+                            </h3>
+                            <h3>
+                                تاريخ الطلب: [OrderDateTime]
+                            </h3>
+                            <h3>
+                                عنوان المستخدم: [ClientIP]
+                            </h3>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-center justify-content-center">
+                            م
+                        </th>
+                        <th class="text-center justify-content-center">
+                            كود المنتج
+                        </th>
+                        <th class="text-center justify-content-center">
+                            إسم المنتج
+                        </th>
+                        <th class="text-center justify-content-center">
+                            سعر المنتج
+                        </th>
+
+                        <th class="text-center justify-content-center">
+                            عدد الوحدات
+                        </th>
+                        <th class="text-center justify-content-center">
+                            الإجمالى
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    [MyRowWithData]
+
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <b>
+                                [totalprice]
+                            </b>
+                            الاجمالى بالجنية المصرى
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            السعر لا يشمل مصاريف الشحن
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            الإسم
+                        </td>
+                        <td colspan="4" class="text-center">
+                            [UserName]
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            التليفون
+                        </td>
+                        <td colspan="4" class="text-center">
+                            [UserPhone]
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            المحافظة
+                        </td>
+                        <td colspan="4" class="text-center">
+                            [UserGovernorate]
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            المدينة
+                        </td>
+                        <td colspan="4" class="text-center">
+                            [UserCity]
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            العنوان
+                        </td>
+                        <td colspan="4" class="text-center">
+                            [UserAddress]
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+                    <tr class="mytableHH">
+                        <td>
+                            [Counter]
+                        </td>
+                        <td class="text-center justify-content-center">
+                            [ProductAutoCode]
+                        </td>
+                        <td class="text-center justify-content-center">
+                            [ProductNameAR]
+                        </td>
+                        <td class="text-center justify-content-center">
+                            [itemPrice]
+                        </td>
+
+                        <td class="text-center justify-content-center">
+                            [itemUnit]
+                        </td>
+                        <td>
+                            [itemUnititemPrice]
+                        </td>
+                    </tr>
